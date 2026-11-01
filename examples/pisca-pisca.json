@@ -1,0 +1,39 @@
+{
+  "title": "Projeto 01 — Pisca-pisca",
+  "board": "arduino-uno-r3",
+  "breadboard": "400-points",
+  "components": [
+    {
+      "id": "led1",
+      "type": "led",
+      "color": "red",
+      "pins": {
+        "anode": "E14",
+        "cathode": "E15"
+      }
+    },
+    {
+      "id": "r1",
+      "type": "resistor",
+      "value": "220Ω",
+      "pins": {
+        "a": "D19",
+        "b": "D15"
+      }
+    }
+  ],
+  "jumpers": [
+    {
+      "id": "J1",
+      "from": "arduino:GND",
+      "to": "breadboard:A19",
+      "color": "black"
+    },
+    {
+      "id": "J2",
+      "from": "breadboard:A14",
+      "to": "arduino:D11",
+      "color": "green"
+    }
+  ]
+}
