@@ -41,7 +41,6 @@ export const Diagram = forwardRef<SVGSVGElement, Props>(function Diagram({ spec,
         if (!pts) return null;
         const col = WIRE_COLORS[j.color ?? "blue"] ?? j.color ?? WIRE_COLORS.blue;
         const d = pts.map((p, i) => `${i ? "L" : "M"}${p.x},${p.y}`).join(" ");
-        const lp = labelPoint(pts);
         return (
           <g key={j.id} data-jumper={j.id}>
             <path d={d} fill="none" stroke="#ffffff" strokeWidth={5.5} strokeLinejoin="miter" strokeLinecap="square" />
@@ -49,12 +48,18 @@ export const Diagram = forwardRef<SVGSVGElement, Props>(function Diagram({ spec,
             {[pts[0], pts[pts.length - 1]].map((p, i) => (
               <circle key={i} cx={p.x} cy={p.y} r={3.6} fill={col} stroke="#ffffff" strokeWidth={1} />
             ))}
-            {showLabels(j) && (
-              <g>
-                <rect x={lp.x - 11} y={lp.y - 6.5} width={22} height={13} rx={3} fill="#ffffff" stroke={col} strokeWidth={1.2} />
-                <text x={lp.x} y={lp.y + 3.5} fontSize={9} fontWeight={700} fill="#1a1a1a" textAnchor="middle" fontFamily="monospace">{j.id}</text>
-              </g>
-            )}
+          </g>
+        );
+      })}
+      {spec.jumpers.map((j) => {
+        const pts = routes.get(j.id);
+        if (!pts || !showLabels(j)) return null;
+        const col = WIRE_COLORS[j.color ?? "blue"] ?? j.color ?? WIRE_COLORS.blue;
+        const lp = labelPoint(pts);
+        return (
+          <g key={j.id} data-jumper-label={j.id}>
+            <rect x={lp.x - 11} y={lp.y - 6.5} width={22} height={13} rx={3} fill="#ffffff" stroke={col} strokeWidth={1.2} />
+            <text x={lp.x} y={lp.y + 3.5} fontSize={9} fontWeight={700} fill="#1a1a1a" textAnchor="middle" fontFamily="monospace">{j.id}</text>
           </g>
         );
       })}
