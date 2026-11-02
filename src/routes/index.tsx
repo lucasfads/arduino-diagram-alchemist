@@ -6,8 +6,9 @@ import { exportPng, exportSvg, slug } from "@/diagram/export";
 import type { DiagramSpec } from "@/diagram/types";
 import pisca from "../../examples/pisca-pisca.json";
 import semaforo from "../../examples/semaforo.json";
+import botaoRgb from "../../examples/botao-rgb.json";
 
-const EXAMPLES: Record<string, unknown> = { "Pisca-pisca": pisca, "Semáforo": semaforo };
+const EXAMPLES: Record<string, unknown> = { "Pisca-pisca": pisca, "Semáforo": semaforo, "Botão + LED RGB": botaoRgb };
 
 export const Route = createFileRoute("/")({
   head: () => ({

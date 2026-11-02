@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import type { DiagramComponent, Point } from "../types";
 import { Led } from "./Led";
 import { Resistor } from "./Resistor";
+import { PushButton } from "./PushButton";
+import { RgbLed } from "./RgbLed";
 import { Placeholder } from "./Placeholder";
 
 export interface RenderProps { c: DiagramComponent; pins: Record<string, Point> }
@@ -21,9 +23,9 @@ const stub = (pins: string[]): ComponentDef => ({ pins, implemented: false, rend
 export const COMPONENTS: Record<string, ComponentDef> = {
   led: { pins: ["anode", "cathode"], implemented: true, render: (p) => <Led {...p} /> },
   resistor: { pins: ["a", "b"], implemented: true, render: (p) => <Resistor {...p} /> },
-  "push-button": stub(["a1", "a2", "b1", "b2"]),
+  "push-button": { pins: ["a1", "a2", "b1", "b2"], implemented: true, render: (p) => <PushButton {...p} /> },
   potentiometer: stub(["vcc", "wiper", "gnd"]),
-  "rgb-led": stub(["red", "common", "green", "blue"]),
+  "rgb-led": { pins: ["red", "common", "green", "blue"], implemented: true, render: (p) => <RgbLed {...p} /> },
   ldr: stub(["a", "b"]),
   buzzer: stub(["positive", "negative"]),
   "tilt-sensor": stub(["a", "b"]),

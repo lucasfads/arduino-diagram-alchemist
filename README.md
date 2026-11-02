@@ -57,16 +57,25 @@ Pinos/furos duplicados, posições inexistentes na protoboard, pinos Arduino ine
 ## Estrutura
 
 ```
-examples/                    JSON de exemplo (pisca-pisca, semáforo)
+examples/                    JSON de exemplo (pisca-pisca, semáforo, botão + LED RGB)
 src/diagram/types.ts         tipos do schema
 src/diagram/geometry.ts      coordenadas da protoboard e do Arduino
 src/diagram/validate.ts      validações + redes elétricas
 src/diagram/routing.ts       roteamento ortogonal dos jumpers
 src/diagram/Arduino.tsx      Arduino Uno R3
 src/diagram/Breadboard.tsx   protoboard 400 pontos
-src/diagram/components/      LED, resistor e registro de componentes
+src/diagram/components/      LED, resistor, botão, LED RGB e registro de componentes
 ```
+
+### Componentes implementados
+
+| Tipo | Pinos | Observações |
+| --- | --- | --- |
+| `led` | `anode`, `cathode` | `color`: red, green, yellow, blue, white, orange |
+| `resistor` | `a`, `b` | `value`: ex. `220Ω`, `10k` (faixas coloridas) |
+| `push-button` | `a1`, `a2`, `b1`, `b2` | `a1`–`a2` e `b1`–`b2` são ligados internamente; apertar une os dois lados. Em geral fica sobre o canal central (ex.: `E5`, `E7`, `F5`, `F7`) |
+| `rgb-led` | `red`, `common`, `green`, `blue` | A perna `common` (a mais longa) é o catodo ou o anodo; o corpo é desenhado ao lado dos pinos, na direção `red` → `blue` |
 
 ### Adicionar um componente
 
-Os tipos `push-button`, `potentiometer`, `rgb-led`, `ldr`, `buzzer`, `tilt-sensor`, `micro-servo`, `seven-segment` e `laser-diode` já têm pinos definidos em `components/registry.tsx` e são desenhados como caixa genérica. Para implementar um: crie `components/Nome.tsx` (recebe `c` e as coordenadas `pins`) e troque o `stub([...])` por `{ pins, implemented: true, render }`.
+Os tipos `potentiometer`, `ldr`, `buzzer`, `tilt-sensor`, `micro-servo`, `seven-segment` e `laser-diode` já têm pinos definidos em `components/registry.tsx` e são desenhados como caixa genérica. Para implementar um: crie `components/Nome.tsx` (recebe `c` e as coordenadas `pins`) e troque o `stub([...])` por `{ pins, implemented: true, render }`.

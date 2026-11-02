@@ -4,6 +4,7 @@ import { routeJumpers } from "@/diagram/routing";
 import { resistorBands } from "@/diagram/components/Resistor";
 import type { DiagramSpec } from "@/diagram/types";
 import pisca from "../../examples/pisca-pisca.json";
+import botaoRgb from "../../examples/botao-rgb.json";
 
 const base = (patch: Partial<DiagramSpec>): DiagramSpec => ({ board: "arduino-uno-r3", breadboard: "400-points", components: [], jumpers: [], ...patch });
 const msgs = (s: DiagramSpec) => validate(s).issues.map((i) => i.message).join("\n");
@@ -11,6 +12,17 @@ const msgs = (s: DiagramSpec) => validate(s).issues.map((i) => i.message).join("
 describe("validação", () => {
   it("exemplo Pisca-pisca não tem problemas", () => {
     expect(validate(pisca as DiagramSpec).issues).toEqual([]);
+  });
+  it("exemplo Botão + LED RGB não tem problemas", () => {
+    expect(validate(botaoRgb as DiagramSpec).issues).toEqual([]);
+  });
+  it("push-button e rgb-led exigem todos os pinos", () => {
+    const m = msgs(base({ components: [
+      { id: "b1", type: "push-button", pins: { a1: "E5", a2: "E7" } },
+      { id: "l1", type: "rgb-led", pins: { red: "E20", common: "E21", green: "E22" } },
+    ] }));
+    expect(m).toMatch(/b1: pino "b1" não definido/);
+    expect(m).toMatch(/l1: pino "blue" não definido/);
   });
   it("detecta pino duplicado", () => {
     expect(msgs(base({ components: [{ id: "r1", type: "resistor", pins: { a: "A1", b: "A1" } }] }))).toMatch(/pino duplicado/);
