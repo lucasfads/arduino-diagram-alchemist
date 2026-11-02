@@ -83,7 +83,7 @@ export function validate(spec: DiagramSpec): { issues: Issue[]; resolved: Resolv
   for (const c of resolved.components) {
     const entries = Object.entries(c.pins);
     if (!entries.length) continue;
-    const connected = entries.some(([n, e]) => (endpointsPerNet.get(find(e.net)) ?? []).some((w) => w !== `${c.id}.${n}`));
+    const connected = entries.some(([n, e]) => e.kind === "arduino" || (endpointsPerNet.get(find(e.net)) ?? []).some((w) => w !== `${c.id}.${n}`));
     if (!connected) warn(`${c.id}: componente sem conexão`);
     const nets = entries.map(([, e]) => find(e.net));
     if (entries.length === 2 && nets[0] === nets[1]) warn(`${c.id}: os dois terminais estão na mesma rede (curto)`);

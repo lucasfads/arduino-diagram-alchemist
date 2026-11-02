@@ -4,9 +4,13 @@ import { Led } from "./Led";
 import { Resistor } from "./Resistor";
 import { PushButton } from "./PushButton";
 import { RgbLed } from "./RgbLed";
+import { Potentiometer } from "./Potentiometer";
+import { Ldr } from "./Ldr";
+import { Buzzer } from "./Buzzer";
+import { MicroServo } from "./MicroServo";
 import { Placeholder } from "./Placeholder";
 
-export interface RenderProps { c: DiagramComponent; pins: Record<string, Point> }
+export interface RenderProps { c: DiagramComponent; pins: Record<string, Point>; index: number }
 
 export interface ComponentDef {
   pins: string[];
@@ -24,12 +28,12 @@ export const COMPONENTS: Record<string, ComponentDef> = {
   led: { pins: ["anode", "cathode"], implemented: true, render: (p) => <Led {...p} /> },
   resistor: { pins: ["a", "b"], implemented: true, render: (p) => <Resistor {...p} /> },
   "push-button": { pins: ["a1", "a2", "b1", "b2"], implemented: true, render: (p) => <PushButton {...p} /> },
-  potentiometer: stub(["vcc", "wiper", "gnd"]),
+  potentiometer: { pins: ["vcc", "wiper", "gnd"], implemented: true, render: (p) => <Potentiometer {...p} /> },
   "rgb-led": { pins: ["red", "common", "green", "blue"], implemented: true, render: (p) => <RgbLed {...p} /> },
-  ldr: stub(["a", "b"]),
-  buzzer: stub(["positive", "negative"]),
+  ldr: { pins: ["a", "b"], implemented: true, render: (p) => <Ldr {...p} /> },
+  buzzer: { pins: ["positive", "negative"], implemented: true, render: (p) => <Buzzer {...p} /> },
   "tilt-sensor": stub(["a", "b"]),
-  "micro-servo": stub(["signal", "vcc", "gnd"]),
+  "micro-servo": { pins: ["signal", "vcc", "gnd"], implemented: true, render: (p) => <MicroServo {...p} /> },
   "seven-segment": stub(["a", "b", "c", "d", "e", "f", "g", "dp", "com1", "com2"]),
   "laser-diode": stub(["signal", "vcc", "gnd"]),
 };

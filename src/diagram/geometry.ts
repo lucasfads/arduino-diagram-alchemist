@@ -3,11 +3,11 @@ import type { Point } from "./types";
 /** Geometria fixa e determinística (unidades SVG). */
 export const P = 16; // passo entre furos (0,1")
 export const CANVAS_W = 930;
-export const CANVAS_H = 500;
+export const CANVAS_H = 550;
 
 // Protoboard
 export const BX = 370;
-export const BY = 110;
+export const BY = 160;
 export const BW = 72 + 29 * P;
 export const BH = 284;
 export const ROWS_TOP = ["A", "B", "C", "D", "E"] as const;

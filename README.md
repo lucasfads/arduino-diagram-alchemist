@@ -57,14 +57,14 @@ Pinos/furos duplicados, posições inexistentes na protoboard, pinos Arduino ine
 ## Estrutura
 
 ```
-examples/                    JSON de exemplo (pisca-pisca, semáforo, botão + LED RGB)
+examples/                    JSON de exemplo (pisca-pisca, semáforo, botão + LED RGB, sensores, servo)
 src/diagram/types.ts         tipos do schema
 src/diagram/geometry.ts      coordenadas da protoboard e do Arduino
 src/diagram/validate.ts      validações + redes elétricas
 src/diagram/routing.ts       roteamento ortogonal dos jumpers
 src/diagram/Arduino.tsx      Arduino Uno R3
 src/diagram/Breadboard.tsx   protoboard 400 pontos
-src/diagram/components/      LED, resistor, botão, LED RGB e registro de componentes
+src/diagram/components/      LED, resistor, botão, LED RGB, potenciômetro, LDR, buzzer, servo e registro de componentes
 ```
 
 ### Componentes implementados
@@ -75,7 +75,15 @@ src/diagram/components/      LED, resistor, botão, LED RGB e registro de compon
 | `resistor` | `a`, `b` | `value`: ex. `220Ω`, `10k` (faixas coloridas) |
 | `push-button` | `a1`, `a2`, `b1`, `b2` | `a1`–`a2` e `b1`–`b2` são ligados internamente; apertar une os dois lados. Em geral fica sobre o canal central (ex.: `E5`, `E7`, `F5`, `F7`) |
 | `rgb-led` | `red`, `common`, `green`, `blue` | A perna `common` (a mais longa) é o catodo ou o anodo; o corpo é desenhado ao lado dos pinos, na direção `red` → `blue` |
+| `potentiometer` | `vcc`, `wiper`, `gnd` | `value` opcional (ex.: `10kΩ`) aparece no rótulo; o `wiper` (cursor) vai ao pino analógico |
+| `ldr` | `a`, `b` | Sem polaridade; use com um resistor de 10kΩ formando divisor de tensão |
+| `buzzer` | `positive`, `negative` | A perna `+` fica marcada |
+| `micro-servo` | `signal`, `vcc`, `gnd` | Desenhado fora da placa, na faixa superior do diagrama; os fios laranja (sinal), vermelho (+5V) e marrom (GND) vão até os pinos informados, que podem ser furos (`T+3`) ou pinos do Arduino (`arduino:D9`). Vários servos se enfileiram da direita para a esquerda |
+
+Resistores de valores diferentes usam o mesmo tipo `resistor`: o `value` (ex.: `10kΩ`) define as faixas de cor e o texto do rótulo (10kΩ = marrom, preto, laranja).
+
+O potenciômetro é desenhado sempre em pé (base embaixo, eixo em cima), cobrindo os furos acima dos pinos. LDR e buzzer desenham o corpo para cima quando os pinos estão nas fileiras `A`–`E` e para baixo nas fileiras `F`–`J`.
 
 ### Adicionar um componente
 
-Os tipos `potentiometer`, `ldr`, `buzzer`, `tilt-sensor`, `micro-servo`, `seven-segment` e `laser-diode` já têm pinos definidos em `components/registry.tsx` e são desenhados como caixa genérica. Para implementar um: crie `components/Nome.tsx` (recebe `c` e as coordenadas `pins`) e troque o `stub([...])` por `{ pins, implemented: true, render }`.
+Os tipos `tilt-sensor`, `seven-segment` e `laser-diode` já têm pinos definidos em `components/registry.tsx` e são desenhados como caixa genérica. Para implementar um: crie `components/Nome.tsx` (recebe `c` e as coordenadas `pins`) e troque o `stub([...])` por `{ pins, implemented: true, render }`.

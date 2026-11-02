@@ -63,12 +63,13 @@ export const Diagram = forwardRef<SVGSVGElement, Props>(function Diagram({ spec,
           </g>
         );
       })}
-      {spec.components.map((c) => {
+      {spec.components.map((c, i) => {
         const r = resolved.components.find((x) => x.id === c.id);
         const def = COMPONENTS[c.type];
         if (!r || !def) return null;
         const pins: Record<string, Point> = Object.fromEntries(Object.entries(r.pins).map(([n, e]) => [n, endpointPoint(e)]));
-        return <g key={c.id}>{def.render({ c, pins })}</g>;
+        const index = spec.components.slice(0, i).filter((x) => x.type === c.type).length;
+        return <g key={c.id}>{def.render({ c, pins, index })}</g>;
       })}
     </svg>
   );

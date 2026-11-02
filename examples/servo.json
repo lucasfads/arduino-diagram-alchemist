@@ -1,0 +1,11 @@
+{
+  "title": "Projeto 05 — Servo 9g",
+  "board": "arduino-uno-r3",
+  "breadboard": "400-points",
+  "components": [
+    { "id": "servo1", "type": "micro-servo", "label": "SERVO 9g", "pins": { "signal": "arduino:D9", "vcc": "T+10", "gnd": "arduino:GND" } }
+  ],
+  "jumpers": [
+    { "id": "J1", "from": "arduino:5V", "to": "breadboard:T+1", "color": "red" }
+  ]
+}

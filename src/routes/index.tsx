@@ -7,8 +7,10 @@ import type { DiagramSpec } from "@/diagram/types";
 import pisca from "../../examples/pisca-pisca.json";
 import semaforo from "../../examples/semaforo.json";
 import botaoRgb from "../../examples/botao-rgb.json";
+import sensores from "../../examples/sensores.json";
+import servo from "../../examples/servo.json";
 
-const EXAMPLES: Record<string, unknown> = { "Pisca-pisca": pisca, "Semáforo": semaforo, "Botão + LED RGB": botaoRgb };
+const EXAMPLES: Record<string, unknown> = { "Pisca-pisca": pisca, "Semáforo": semaforo, "Botão + LED RGB": botaoRgb, "Potenciômetro, LDR e buzzer": sensores, "Servo 9g": servo };
 
 export const Route = createFileRoute("/")({
   head: () => ({

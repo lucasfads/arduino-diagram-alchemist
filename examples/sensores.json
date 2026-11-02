@@ -1,0 +1,22 @@
+{
+  "title": "Projeto 04 — Potenciômetro, LDR e buzzer",
+  "board": "arduino-uno-r3",
+  "breadboard": "400-points",
+  "components": [
+    { "id": "pot1", "type": "potentiometer", "value": "10kΩ", "pins": { "vcc": "F5", "wiper": "F7", "gnd": "F9" } },
+    { "id": "ldr1", "type": "ldr", "pins": { "a": "F13", "b": "F15" } },
+    { "id": "r1", "type": "resistor", "value": "10kΩ", "pins": { "a": "H15", "b": "B-12" } },
+    { "id": "bz1", "type": "buzzer", "pins": { "positive": "F22", "negative": "F25" } }
+  ],
+  "jumpers": [
+    { "id": "J1", "from": "arduino:GND", "to": "breadboard:B-1", "color": "black" },
+    { "id": "J2", "from": "arduino:5V", "to": "breadboard:B+1", "color": "red" },
+    { "id": "J3", "from": "breadboard:B+3", "to": "breadboard:G5", "color": "red" },
+    { "id": "J4", "from": "arduino:A1", "to": "breadboard:G7", "color": "green" },
+    { "id": "J5", "from": "breadboard:B-5", "to": "breadboard:G9", "color": "black" },
+    { "id": "J6", "from": "breadboard:B+8", "to": "breadboard:G13", "color": "red" },
+    { "id": "J7", "from": "arduino:A0", "to": "breadboard:G15", "color": "yellow" },
+    { "id": "J8", "from": "arduino:D8", "to": "breadboard:G22", "color": "blue" },
+    { "id": "J9", "from": "breadboard:B-16", "to": "breadboard:G25", "color": "black" }
+  ]
+}
