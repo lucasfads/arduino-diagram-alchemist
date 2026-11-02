@@ -37,9 +37,16 @@ export function Resistor({ c, pins }: RenderProps) {
       <circle cx={a.x} cy={a.y} r={2.4} fill="#555" />
       <circle cx={b.x} cy={b.y} r={2.4} fill="#555" />
       <g transform={`translate(${cx},${cy}) rotate(${upright}) translate(0,-9)`}>
-        <text fontSize={9} fill="#333" textAnchor="middle" fontFamily="monospace">
-          {(c.label ?? c.id.toUpperCase()) + (c.value ? ` ${c.value}` : "")}
-        </text>
+        {(() => {
+          const t = (c.label ?? c.id.toUpperCase()) + (c.value ? ` ${c.value}` : "");
+          const w = t.length * 5.4 + 8;
+          return (
+            <>
+              <rect x={-w / 2} y={-8} width={w} height={12} rx={3} fill="#ffffff" opacity={0.92} stroke="#c8cdd4" strokeWidth={0.8} />
+              <text y={1.5} fontSize={9} fill="#333" textAnchor="middle" fontFamily="monospace">{t}</text>
+            </>
+          );
+        })()}
       </g>
     </g>
   );

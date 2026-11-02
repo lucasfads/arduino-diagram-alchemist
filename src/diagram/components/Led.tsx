@@ -45,7 +45,17 @@ export function Led({ c, pins }: RenderProps) {
       <circle cx={k.x} cy={k.y} r={2.4} fill="#555" />
       <text x={la.x} y={la.y} fontSize={10} fontWeight={700} fill="#c62828" textAnchor="middle">{la.t}</text>
       <text x={lk.x} y={lk.y} fontSize={10} fontWeight={700} fill="#222" textAnchor="middle">{lk.t}</text>
-      <text x={bx} y={vertical ? by - r - 4 : by - r - 4} fontSize={9} fill="#333" textAnchor="middle" fontFamily="monospace">{c.label ?? c.id.toUpperCase()}</text>
+      {(() => {
+        const t = c.label ?? c.id.toUpperCase();
+        const w = t.length * 5.4 + 8;
+        const y = by - r - 4;
+        return (
+          <>
+            <rect x={bx - w / 2} y={y - 9} width={w} height={12} rx={3} fill="#ffffff" opacity={0.92} stroke="#c8cdd4" strokeWidth={0.8} />
+            <text x={bx} y={y} fontSize={9} fill="#333" textAnchor="middle" fontFamily="monospace">{t}</text>
+          </>
+        );
+      })()}
     </g>
   );
 }
