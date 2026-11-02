@@ -10,6 +10,12 @@ bun run dev      # abre em http://localhost:8080
 bun run test     # validações e layout
 ```
 
+## Publicar no GitHub Pages
+
+O workflow `.github/workflows/deploy.yml` gera o site estático e publica automaticamente a cada push em `main`. Para habilitar, no GitHub abra **Settings → Pages** e selecione **GitHub Actions** como fonte de publicação. O endereço será `https://lucasfads.github.io/arduino-diagram-alchemist/`.
+
+A geração estática prerenderiza a rota `/`. O prefixo de caminho é configurado no workflow para funcionar no endereço de projeto do GitHub Pages; no desenvolvimento local, o caminho continua sendo `/`.
+
 ## Editar um diagrama
 
 1. Abra a aplicação, escolha um exemplo em **Carregar exemplo…** ou cole seu JSON.
