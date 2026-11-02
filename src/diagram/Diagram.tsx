@@ -36,13 +36,6 @@ export const Diagram = forwardRef<SVGSVGElement, Props>(function Diagram({ spec,
       )}
       <Arduino highlight={highlight} />
       <Breadboard />
-      {spec.components.map((c) => {
-        const r = resolved.components.find((x) => x.id === c.id);
-        const def = COMPONENTS[c.type];
-        if (!r || !def) return null;
-        const pins: Record<string, Point> = Object.fromEntries(Object.entries(r.pins).map(([n, e]) => [n, endpointPoint(e)]));
-        return <g key={c.id}>{def.render({ c, pins })}</g>;
-      })}
       {spec.jumpers.map((j) => {
         const pts = routes.get(j.id);
         if (!pts) return null;
@@ -64,6 +57,13 @@ export const Diagram = forwardRef<SVGSVGElement, Props>(function Diagram({ spec,
             )}
           </g>
         );
+      })}
+      {spec.components.map((c) => {
+        const r = resolved.components.find((x) => x.id === c.id);
+        const def = COMPONENTS[c.type];
+        if (!r || !def) return null;
+        const pins: Record<string, Point> = Object.fromEntries(Object.entries(r.pins).map(([n, e]) => [n, endpointPoint(e)]));
+        return <g key={c.id}>{def.render({ c, pins })}</g>;
       })}
     </svg>
   );
