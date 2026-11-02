@@ -32,7 +32,7 @@ describe("layout", () => {
     const a = routeJumpers(resolved.jumpers), b = routeJumpers(resolved.jumpers);
     expect([...a]).toEqual([...b]);
     for (const pts of a.values())
-      for (let i = 0; i < pts.length - 1; i++) expect(pts[i].x === pts[i + 1].x || pts[i].y === pts[i + 1].y).toBe(true);
+      for (let i = 0; i < pts.length - 1; i++) expect(pts[i]!.x === pts[i + 1]!.x || pts[i]!.y === pts[i + 1]!.y).toBe(true);
   });
   it("220Ω = vermelho, vermelho, marrom, ouro", () => {
     expect(resistorBands("220Ω")).toEqual(["#e53935", "#e53935", "#8d5524", "#c9a227"]);
