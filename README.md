@@ -57,7 +57,7 @@ Pinos/furos duplicados, posições inexistentes na protoboard, pinos Arduino ine
 ## Estrutura
 
 ```
-examples/                    JSON de exemplo (pisca-pisca, semáforo, botão + LED RGB, sensores, servo)
+examples/                    JSON de exemplo (pisca-pisca, semáforo, botão + LED RGB, sensores, servo, laser/tilt/display)
 src/diagram/types.ts         tipos do schema
 src/diagram/geometry.ts      coordenadas da protoboard e do Arduino
 src/diagram/validate.ts      validações + redes elétricas
@@ -78,6 +78,9 @@ src/diagram/components/      LED, resistor, botão, LED RGB, potenciômetro, LDR
 | `potentiometer` | `vcc`, `wiper`, `gnd` | `value` opcional (ex.: `10kΩ`) aparece no rótulo; o `wiper` (cursor) vai ao pino analógico |
 | `ldr` | `a`, `b` | Sem polaridade; use com um resistor de 10kΩ formando divisor de tensão |
 | `buzzer` | `positive`, `negative` | A perna `+` fica marcada |
+| `laser-diode` | `positive`, `negative` | Cilindro de cobre/ouro desenhado fora da placa (faixa superior), com fios vermelho (+) e azul (−) até os furos ou pinos informados |
+| `tilt-sensor` | `vcc`, `gnd`, `signal` | Módulo SW-420: plaquinha azul com 3 pernas (VCC, GND, DO), trimpot, sensor e LED |
+| `seven-segment` | `a`–`g`, `dp`, `com1`, `com2` | Corpo preto vertical sobre o canal central: 5 pinos em cada lado (ex.: `E20`–`E24` e `F20`–`F24`); sem letras impressas |
 | `micro-servo` | `signal`, `vcc`, `gnd` | Desenhado fora da placa, na faixa superior do diagrama; os fios laranja (sinal), vermelho (+5V) e marrom (GND) vão até os pinos informados, que podem ser furos (`T+3`) ou pinos do Arduino (`arduino:D9`). Vários servos se enfileiram da direita para a esquerda |
 
 Resistores de valores diferentes usam o mesmo tipo `resistor`: o `value` (ex.: `10kΩ`) define as faixas de cor e o texto do rótulo (10kΩ = marrom, preto, laranja).
@@ -86,4 +89,4 @@ O potenciômetro é desenhado sempre em pé (base embaixo, eixo em cima), cobrin
 
 ### Adicionar um componente
 
-Os tipos `tilt-sensor`, `seven-segment` e `laser-diode` já têm pinos definidos em `components/registry.tsx` e são desenhados como caixa genérica. Para implementar um: crie `components/Nome.tsx` (recebe `c` e as coordenadas `pins`) e troque o `stub([...])` por `{ pins, implemented: true, render }`.
+Todos os tipos da tabela acima estão implementados. Para adicionar um novo: crie `components/Nome.tsx` (recebe `c` e as coordenadas `pins`) e troque o `stub([...])` por `{ pins, implemented: true, render }`.

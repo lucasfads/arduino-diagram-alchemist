@@ -1,0 +1,31 @@
+{
+  "title": "Projeto 06 — Laser, tilt e display 7 segmentos",
+  "board": "arduino-uno-r3",
+  "breadboard": "400-points",
+  "components": [
+    { "id": "laser1", "type": "laser-diode", "label": "LASER", "pins": { "positive": "F5", "negative": "F7" } },
+    { "id": "tilt1", "type": "tilt-sensor", "label": "TILT", "pins": { "vcc": "F13", "gnd": "F14", "signal": "F15" } },
+    { "id": "disp1", "type": "seven-segment", "label": "DISPLAY", "pins": { "a": "E20", "b": "E21", "c": "E22", "d": "E23", "e": "E24", "f": "F20", "g": "F21", "dp": "F22", "com1": "F23", "com2": "F24" } }
+  ],
+  "jumpers": [
+    { "id": "J1", "from": "arduino:D2", "to": "breadboard:A20", "color": "orange", "showLabel": false },
+    { "id": "J2", "from": "arduino:D3", "to": "breadboard:A21", "color": "yellow", "showLabel": false },
+    { "id": "J3", "from": "arduino:D4", "to": "breadboard:A22", "color": "green", "showLabel": false },
+    { "id": "J4", "from": "arduino:D5", "to": "breadboard:A23", "color": "blue", "showLabel": false },
+    { "id": "J5", "from": "arduino:D6", "to": "breadboard:A24", "color": "purple", "showLabel": false },
+    { "id": "J6", "from": "arduino:D7", "to": "breadboard:J20", "color": "green", "showLabel": false },
+    { "id": "J7", "from": "arduino:D8", "to": "breadboard:J21", "color": "blue", "showLabel": false },
+    { "id": "J8", "from": "arduino:D9", "to": "breadboard:J22", "color": "orange", "showLabel": false },
+    { "id": "J9", "from": "breadboard:B-20", "to": "breadboard:J23", "color": "black", "showLabel": false },
+    { "id": "J10", "from": "breadboard:B-21", "to": "breadboard:J24", "color": "black", "showLabel": false },
+    { "id": "J11", "from": "arduino:D10", "to": "breadboard:G5", "color": "orange" },
+    { "id": "J13", "from": "breadboard:T-6", "to": "breadboard:G7", "color": "black" },
+    { "id": "J14", "from": "breadboard:B+12", "to": "breadboard:G13", "color": "red" },
+    { "id": "J20", "from": "breadboard:B-12", "to": "breadboard:G14", "color": "black" },
+    { "id": "J15", "from": "arduino:A0", "to": "breadboard:G15", "color": "yellow" },
+    { "id": "J16", "from": "arduino:5V", "to": "breadboard:T+1", "color": "red" },
+    { "id": "J17", "from": "arduino:GND", "to": "breadboard:T-1", "color": "black" },
+    { "id": "J18", "from": "arduino:GND2", "to": "breadboard:B-1", "color": "black" },
+    { "id": "J19", "from": "breadboard:T+2", "to": "breadboard:B+1", "color": "red" }
+  ]
+}

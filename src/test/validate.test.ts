@@ -10,6 +10,8 @@ import pisca from "../../examples/pisca-pisca.json";
 import botaoRgb from "../../examples/botao-rgb.json";
 import sensores from "../../examples/sensores.json";
 import servo from "../../examples/servo.json";
+import laserTiltDisplay from "../../examples/laser-tilt-display.json";
+import { COMPONENTS } from "@/diagram/components/registry";
 
 const base = (patch: Partial<DiagramSpec>): DiagramSpec => ({ board: "arduino-uno-r3", breadboard: "400-points", components: [], jumpers: [], ...patch });
 const msgs = (s: DiagramSpec) => validate(s).issues.map((i) => i.message).join("\n");
@@ -26,6 +28,12 @@ describe("validação", () => {
   });
   it("exemplo Servo 9g não tem problemas", () => {
     expect(validate(servo as DiagramSpec).issues).toEqual([]);
+  });
+  it("exemplo Laser, tilt e display não tem problemas", () => {
+    expect(validate(laserTiltDisplay as DiagramSpec).issues).toEqual([]);
+  });
+  it("todos os tipos do registro estão implementados", () => {
+    expect(Object.entries(COMPONENTS).filter(([, d]) => !d.implemented)).toEqual([]);
   });
   it("push-button e rgb-led exigem todos os pinos", () => {
     const m = msgs(base({ components: [

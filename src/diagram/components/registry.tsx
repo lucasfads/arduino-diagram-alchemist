@@ -8,6 +8,9 @@ import { Potentiometer } from "./Potentiometer";
 import { Ldr } from "./Ldr";
 import { Buzzer } from "./Buzzer";
 import { MicroServo } from "./MicroServo";
+import { LaserDiode } from "./LaserDiode";
+import { TiltSensor } from "./TiltSensor";
+import { SevenSegment } from "./SevenSegment";
 import { Placeholder } from "./Placeholder";
 
 export interface RenderProps { c: DiagramComponent; pins: Record<string, Point>; index: number }
@@ -32,8 +35,8 @@ export const COMPONENTS: Record<string, ComponentDef> = {
   "rgb-led": { pins: ["red", "common", "green", "blue"], implemented: true, render: (p) => <RgbLed {...p} /> },
   ldr: { pins: ["a", "b"], implemented: true, render: (p) => <Ldr {...p} /> },
   buzzer: { pins: ["positive", "negative"], implemented: true, render: (p) => <Buzzer {...p} /> },
-  "tilt-sensor": stub(["a", "b"]),
+  "tilt-sensor": { pins: ["vcc", "gnd", "signal"], implemented: true, render: (p) => <TiltSensor {...p} /> },
   "micro-servo": { pins: ["signal", "vcc", "gnd"], implemented: true, render: (p) => <MicroServo {...p} /> },
-  "seven-segment": stub(["a", "b", "c", "d", "e", "f", "g", "dp", "com1", "com2"]),
-  "laser-diode": stub(["signal", "vcc", "gnd"]),
+  "seven-segment": { pins: ["a", "b", "c", "d", "e", "f", "g", "dp", "com1", "com2"], implemented: true, render: (p) => <SevenSegment {...p} /> },
+  "laser-diode": { pins: ["positive", "negative"], implemented: true, render: (p) => <LaserDiode {...p} /> },
 };

@@ -9,8 +9,9 @@ import semaforo from "../../examples/semaforo.json";
 import botaoRgb from "../../examples/botao-rgb.json";
 import sensores from "../../examples/sensores.json";
 import servo from "../../examples/servo.json";
+import laserTiltDisplay from "../../examples/laser-tilt-display.json";
 
-const EXAMPLES: Record<string, unknown> = { "Pisca-pisca": pisca, "Semáforo": semaforo, "Botão + LED RGB": botaoRgb, "Potenciômetro, LDR e buzzer": sensores, "Servo 9g": servo };
+const EXAMPLES: Record<string, unknown> = { "Pisca-pisca": pisca, "Semáforo": semaforo, "Botão + LED RGB": botaoRgb, "Potenciômetro, LDR e buzzer": sensores, "Servo 9g": servo, "Laser, tilt e display": laserTiltDisplay };
 
 export const Route = createFileRoute("/")({
   head: () => ({
